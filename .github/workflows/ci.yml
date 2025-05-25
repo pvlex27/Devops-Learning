@@ -13,6 +13,5 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Run a simple script
-        run: echo "Hello from GitHub Actions! CI pipeline triggered on push to main branch."
-
+      - name: Run hello-devops.sh script
+        run: bash ./04-ci-cd-github-actions/hello-devops.sh
