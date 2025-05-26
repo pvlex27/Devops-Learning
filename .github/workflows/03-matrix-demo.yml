@@ -1,0 +1,25 @@
+name: Matrix Demo Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node-version: [14, 16, 18]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Run matrix demo script
+        env:
+          NODE_VERSION: ${{ matrix.node-version }}
+          RUNNER_OS: ${{ matrix.os }}
+        run: |
+          bash ./04-ci-cd-github-actions/03-matrix-demo.sh
