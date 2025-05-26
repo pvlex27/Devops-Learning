@@ -1,0 +1,34 @@
+name: Artifacts Upload and Download
+
+on:
+  push:
+    paths:
+      - "04-ci-cd-github-actions/05-artifacts-demo.sh"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Run artifact script
+        run: bash 04-ci-cd-github-actions/05-artifacts-demo.sh
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-output
+          path: 04-ci-cd-github-actions/build_output.txt
+
+  download:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build-output
+
+      - name: Display artifact content
+        run: cat build_output.txt
