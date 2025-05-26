@@ -1,0 +1,17 @@
+name: Environment Variables Demo
+
+on:
+  push:
+    paths:
+      - '04-ci-cd-github-actions/02-env-vars-demo.sh'
+      - '.github/workflows/02-env-vars.yml'
+
+jobs:
+  show-env-vars:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Environment Variables Script
+        run: bash 04-ci-cd-github-actions/02-env-vars-demo.sh
