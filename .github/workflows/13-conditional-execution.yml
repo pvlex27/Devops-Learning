@@ -1,0 +1,33 @@
+name: Conditional Execution Demo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  conditional-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Step that always runs
+        run: echo "This step always runs"
+
+      - name: Failing step
+        run: ./04-ci-cd-github-actions/13-conditional-execution-demo.sh
+        continue-on-error: true
+
+      - name: This runs even if previous failed
+        if: always()
+        run: echo "Continuing even after error"
+
+      - name: This runs only if previous step failed
+        if: failure()
+        run: echo "Previous step failed"
+
+      - name: This runs only if previous step succeeded
+        if: success()
+        run: echo "Previous step succeeded"
