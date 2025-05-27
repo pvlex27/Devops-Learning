@@ -1,0 +1,14 @@
+name: Manual Trigger Demo
+
+on:
+  workflow_dispatch:  # This enables the manual trigger
+
+jobs:
+  run-manually:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print a message
+        run: echo "Workflow triggered manually by user"
+      
+      - name: Run script
+        run: bash 04-ci-cd-github-actions/10-manual-trigger.sh
