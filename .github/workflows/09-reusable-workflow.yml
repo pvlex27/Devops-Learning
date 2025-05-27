@@ -1,0 +1,13 @@
+name: Call Reusable Workflow
+
+on:
+  push:
+    paths:
+      - '.github/workflows/09-reusable-workflow.yml'
+      - '.github/workflows/reusable-workflow.yml'
+
+jobs:
+  call-reusable:
+    uses: ./.github/workflows/reusable-workflow.yml
+    with:
+      username: Priyanka Verma 
