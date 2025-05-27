@@ -2,20 +2,24 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    paths:
-      - 'docs/**'
-      - '.github/workflows/07-gh-pages.yml'
+    branches:
+      - main  # or your default branch
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
+    - name: Create simple HTML page (demo)
+      run: |
+        mkdir public
+        echo "<h1>Hello from GitHub Actions - GitHub Pages Deployment</h1>" > public/index.html
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./public
