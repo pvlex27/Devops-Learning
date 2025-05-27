@@ -1,0 +1,22 @@
+name: Slack Notification Demo
+
+on:
+  push:
+    branches:
+      - main
+  workflow_run:
+    workflows: ["CI"] # Optional: name of another workflow you want to monitor
+    types:
+      - completed
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Slack Notification
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          fields: repo,message,commit,author,ref,workflow,job,took
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
