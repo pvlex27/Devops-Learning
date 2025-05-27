@@ -1,0 +1,26 @@
+name: Caching Demo
+
+on:
+  push:
+    paths:
+      - '04-ci-cd-github-actions/06-cache-demo.sh'
+      - '.github/workflows/06-cache.yml'
+
+jobs:
+  cache-example:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/demo-dependencies
+          key: demo-cache-${{ runner.os }}-${{ hashFiles('04-ci-cd-github-actions/06-cache-demo.sh') }}
+          restore-keys: |
+            demo-cache-${{ runner.os }}-
+
+      - name: Run installation
+        run: ./04-ci-cd-github-actions/06-cache-demo.sh
