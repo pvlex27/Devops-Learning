@@ -1,0 +1,24 @@
+name: Matrix Strategy Demo
+
+on:
+  push:
+    paths:
+      - '04-ci-cd-github-actions/08-matrix-strategy-demo.sh'
+      - '.github/workflows/08-matrix-strategy.yml'
+
+jobs:
+  matrix-demo:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        shell: [bash, sh]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run shell script with matrix
+        run: |
+          chmod +x 04-ci-cd-github-actions/08-matrix-strategy-demo.sh
+          ./04-ci-cd-github-actions/08-matrix-strategy-demo.sh "${{ matrix.os }}" "${{ matrix.shell }}"
