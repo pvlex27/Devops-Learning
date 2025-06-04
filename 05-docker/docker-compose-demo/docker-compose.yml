@@ -1,0 +1,9 @@
+version: '3'
+services:
+  web:
+    image: nginx
+    ports:
+      - "8080:80"
+  app:
+    image: busybox
+    command: sh -c "while true; do echo App running; sleep 5; done"

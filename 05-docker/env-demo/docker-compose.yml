@@ -1,0 +1,7 @@
+version: '3'
+services:
+  app:
+    image: alpine
+    command: sh -c "echo Welcome to $APP_NAME"
+    env_file:
+      - .env
