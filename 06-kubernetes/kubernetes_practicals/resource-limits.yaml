@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: resource-demo
+spec:
+  containers:
+    - name: busybox
+      image: busybox
+      command: ["sh", "-c", "while true; do echo Running...; sleep 10; done"]
+      resources:
+        requests:
+          memory: "32Mi"
+          cpu: "250m"
+        limits:
+          memory: "64Mi"
+          cpu: "500m"

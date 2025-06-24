@@ -1,0 +1,22 @@
+#!/bin/bash
+
+echo "🌐 Kubernetes Introduction"
+echo "----------------------------"
+echo "Kubernetes (a.k.a. K8s) is a container orchestration platform that automates:"
+echo "- Deployment"
+echo "- Scaling"
+echo "- Management of containerized applications"
+
+echo ""
+echo "🎯 Key Kubernetes Components:"
+echo "1. Cluster: Group of machines (nodes)"
+echo "2. Node: Worker machine (VM/Physical)"
+echo "3. Pod: Smallest deployable unit in K8s (holds containers)"
+echo "4. Deployment: Manages replica sets and pod rollout"
+echo "5. Service: Exposes pods to internal/external access"
+echo ""
+echo "🔁 Orchestration Benefits:"
+echo "- High Availability"
+echo "- Scalability"
+echo "- Load Balancing"
+echo "- Self-healing (auto restart on failure)"
