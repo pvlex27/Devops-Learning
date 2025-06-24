@@ -20,8 +20,8 @@ jobs:
       - name: Build and Push Docker Image
         working-directory: 06-kubernetes/kubernetes_practicals/cicd-app
         run: |
-          docker build -t yourdockerhubusername/cicd-app:latest .
-          docker push yourdockerhubusername/cicd-app:latest
+          docker build -t pv271994/cicd-app:latest .
+          docker push pv271994/cicd-app:latest
 
       - name: Set up kubeconfig
         run: |
